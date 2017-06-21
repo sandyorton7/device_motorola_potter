@@ -52,16 +52,6 @@ TARGET_USES_64_BIT_BINDER := true
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := potter,potter_retail
 
-# Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-    endif
-  endif
-endif
-
 # GPS
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
@@ -149,6 +139,11 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/doubletap2wake"
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
+
+# Dexpreopt
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
 
 # Display
 BOARD_USES_ADRENO := true
