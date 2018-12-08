@@ -25,9 +25,9 @@ bin/qmi_motext_hook
 bin/qseecomd
 bin/radish
 bin/rild
-bin/rmt_storage
+bin/rmt_storage|5a9b6be26167b804d003e90115d43d24ee150713
 bin/ssr_setup
-bin/tftp_server
+bin/tftp_server|234a6a3e6801a38d3510ed9a007f1d64ba23e9e5
 bin/time_daemon
 etc/acdbdata/Bluetooth_cal.acdb
 etc/acdbdata/General_cal.acdb
@@ -646,6 +646,8 @@ vendor/lib/liboptizoom.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqcmaputils.so
+vendor/lib64/libqrtr.so|3336428d3c46068e949cc1e222abf6668e044b3e
+vendor/lib64/libqsocket.so|ca5fc00c81aa3e8c741fbc7589d31d97234c01c0
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqisl.so
