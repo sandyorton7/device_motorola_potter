@@ -906,7 +906,7 @@ on charger
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-    setprop sys.io.scheduler bfq
+    setprop sys.io.scheduler cfq
 
     # scheduler settings
     write /proc/sys/kernel/sched_window_stats_policy 3
@@ -962,35 +962,15 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
 
-    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 400
-    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 18000
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 700
+    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 1r000
     write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 
     # Enable input boost configuration
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:652800"
-    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 10
-    write /sys/module/cpu_boost/parameters/input_boost_ms 300
+    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 6
+    write /sys/module/cpu_boost/parameters/input_boost_ms 64
    
-    # Entorpy
-    write /proc/sys/kernel/random/read_wakeup_threshold 128
-    write /proc/sys/kernel/random/write_wakeup_threshold 896
-
-    #Disable CRC
-    write /sys/module/mmc_core/parameters/use_spi_crc 0
-
-    #Enable Arch Power
-    write /sys/kernel/sched/arch_power 1
-
-    #VM tweaks
-    write /proc/sys/vm/swappiness 40
-    write /proc/sys/vm/vfs_cache_pressure 100
-    write /proc/sys/vm/dirty_ratio 80 
-    write /proc/sys/vm/dirty_background_ratio 50
-    write /proc/sys/vm/min_free_kbytes 4096
-
-    # Disable LMK debugging
-    write sys/module/lowmemorykiller/parameters/debug_level 0
-
     # re-enable thermal & BCL core_control now
     
     write sys/module/msm_thermal/core_control/enabled 1
@@ -998,6 +978,25 @@ on property:sys.boot_completed=1
     write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 192
     write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 240
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
+
+    # Entorpy
+    write /proc/sys/kernel/random/read_wakeup_threshold 128
+ 
+    #VM tweaks
+    write /proc/sys/vm/vfs_cache_pressure 90
+    write /proc/sys/vm/dirty_ratio 80
+    write /proc/sys/vm/dirty_background_ratio 50
+    write /proc/sys/vm/min_free_kbytes 4096
+
+    # Power Suspend mode
+    write sys/kernel/power_suspend/power_suspend_mode 3
+
+    # Saturation value
+    write sys/devices/platform/kcal_ctrl.0/kcal_sat 260
+
+    # Adreno Idler
+    write sys/module/adreno_idler/parameters/adreno_idler_idleworkload 7000
+    write sys/module/adreno_idler/parameters/adreno_idler_idlewait 18
 
     # Bring up all cores online
     write /sys/devices/system/cpu/cpu1/online 1
