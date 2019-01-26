@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/rr_potter.mk
+    $(LOCAL_DIR)/viper_potter.mk
