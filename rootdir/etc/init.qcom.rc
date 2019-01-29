@@ -440,13 +440,9 @@ on post-fs-data
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
 
-    #Create PERFD deamon related dirs
-    mkdir /data/vendor/perfd 0770 root system
-    chmod 2770 /data/vendor/perfd
-    rm /data/vendor/perfd/default_values
-
-    #Create IOP  deamon related dirs
-    mkdir /data/vendor/misc/iop 0770 root system
+    # Create related dirs
+    mkdir /data/system/perfd 0770 root system
+    chmod 2770 /data/system/perfd
 
     #Create SWAP related dirs
     mkdir /data/vendor/swap 0770 root system
@@ -913,8 +909,8 @@ on property:service.bootanim.exit=1
 
     # Enable input boost configuration
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
-    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 1
-    write /sys/module/cpu_boost/parameters/input_boost_ms 100
+    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 0
+    write /sys/module/cpu_boost/parameters/input_boost_ms 20
 
     # re-enable thermal & BCL core_control now
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -947,6 +943,7 @@ on property:service.bootanim.exit=1
     write /proc/sys/kernel/sched_freq_dec_notify 200000
 
     # set default schedTune value for foreground/top-app (only affects EAS)
+    write /dev/stune/schedtune.sched_boost 10
     write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.boost 0
@@ -954,6 +951,7 @@ on property:service.bootanim.exit=1
     write /dev/stune/top-app/schedtune.dynamic_boost 1
     write /dev/stune/rt/schedtune.prefer_idle 1
     write /dev/stune/rt/schedtune.boost 0
+    write /dev/stune/rt/schedtune.sched_boost 30
 
     # Log kernel wake-up source
     write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
