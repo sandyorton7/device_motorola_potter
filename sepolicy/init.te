@@ -6,6 +6,8 @@ allow init hwservicemanager:binder call;
 allow init mm-qcamerad:binder transfer;
 allow init platform_app:binder transfer;
 
+allow init sysfs_devices_system_cpu:dir write;
+allow init sysfs_lowmemorykiller:dir write;
 allow init system_app:binder transfer;
 allow init system_data_file:file lock;
 
@@ -56,6 +58,28 @@ allow init { domain -lmkd -crash_dump }:process noatsecure;
 allow init hal_perf_hwservice:hwservice_manager find;
 allow init hidl_base_hwservice:hwservice_manager add;
 
+allow init sysfs:file { open setattr write read};
+allow init vendor_file:file execute_no_trans;
+allow init sysfs_battery_supply:lnk_file read;
+allow init sysfs_battery_supply:file {read open};
+allow init sysfs_usb_supply:file {read open};
+allow init hwservicemanager:binder {transfer call};
+allow init system_file:file execute_no_trans;
+allow init wcnss_device:chr_file {open read write};
+allow init hal_health_hwservice:hwservice_manager add; 
+allow init proc:file {open write};
+allow init sysfs_capsense:file setattr;
+allow init sysfs_fpc:file {open read write setattr};
+allow init tee_device:chr_file read;
+allow init ion_device:chr_file {read ioctl};
+allow init uhid_device:chr_file {ioctl write};
+allow init default_android_hwservice:hwservice_manager add;
+allow init hal_power_hwservice:hwservice_manager add;
+allow init hal_fingerprint_hwservice:hwservice_manager add;
+
+allow init hal_perf_default:binder call;
+allow init hal_usb_hwservice:hwservice_manager add;
+allow init fingerprintd_data_file:file rename;
 allow init debugfs:dir mounton;
 allow init persist_file:dir mounton;
 allow init sysfs:file { setattr };
