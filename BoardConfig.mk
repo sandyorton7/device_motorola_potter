@@ -77,6 +77,7 @@ TARGET_KERNEL_CONFIG := potter_defconfig
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8953
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_USE_SDCLANG := true
+TARGET_KERNEL_CLANG_PATH := $(PWD)/prebuilts/clang/host/$(HOST_OS)-x86/DragonTC-9.0/bin
 
 # Audio
 AUDIO_FEATURE_ENABLED_ALAC_OFFLOAD := true
