@@ -333,6 +333,7 @@ PRODUCT_PACKAGES += \
     init.mmi.laser.sh \
     init.mmi.rc \
     init.potter.rc \
+    init.potter-performance.rc \
     init.mmi.usb.rc \
     init.qcom.rc \
     init.qcom.ril.sh
