@@ -469,3 +469,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.config.media_vol_steps=20
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
+
+# Trust HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service

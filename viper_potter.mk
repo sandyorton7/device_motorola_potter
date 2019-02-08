@@ -48,4 +48,4 @@ $(call inherit-product, vendor/motorola/potter/potter-vendor.mk)
 
 #Le Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.viper.maintainer=thenewguyhere(Sri Sandeep)
+  ro.viper.maintainer=thenewguyhere
